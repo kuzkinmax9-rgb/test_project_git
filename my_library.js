@@ -35,7 +35,13 @@ class Library {
     }
 
     findBook(searchTerm) {
-        return this.books.filter(book => book.title.includes(searchTerm))
+        let foundBooks = this.books.filter(book => book.title.includes(searchTerm));
+        if (foundBooks.length) {
+            return foundBooks;  
+        } else {
+            foundBooks = this.books.filter(book => book.isbn == searchTerm);
+            return foundBooks;
+        }
     }
 }
 
