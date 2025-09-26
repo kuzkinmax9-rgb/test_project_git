@@ -43,6 +43,18 @@ class Library {
             return foundBooks;
         }
     }
+    getBookStats() {
+    const totalQuantity = this.books.reduce((accum, val) => accum + val.totalQuantity, 0);
+    const availbleQuantity = this.books.reduce((accum, val) => accum + val.availbleQuantity, 0);
+    const statistic = {
+        totalQuantity: totalQuantity,
+        availbleQuantity: availbleQuantity,
+        issued: totalQuantity - availbleQuantity,
+        mostPopularBooks: this.books.sort((a, b) => b.borrowedBy.length - a.borrowedBy.length).slice(0, 2)
+    }
+    return statistic;    
+
+    }
 }
 
 const library = new Library("Тестовая библиотека");
